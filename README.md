@@ -1,6 +1,5 @@
 # Work Journal
 
-A minimalist engineering log of my open-source contributions, technical post-mortems, and practical learnings.
 
 ---
 
