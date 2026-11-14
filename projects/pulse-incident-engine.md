@@ -21,20 +21,22 @@ Pulse is a centralized incident command center engineered for deterministic life
 Monitoring Webhooks / Alerts
               │
               ▼
-    SHA-256 Alert Deduplication Gate
+    SHA-256 Fingerprint Deduplication Gate
               │
               ▼
-    Deterministic State Machine (FSM)
-    [OPEN] ──> [INVESTIGATING] ──> [IDENTIFIED] ──> [MONITORING] ──> [RESOLVED]
+    Deterministic Finite State Machine (FSM)
+    [FIRED] ──> [ACKNOWLEDGED] ──> [INVESTIGATING] ──> [MITIGATED] ──> [RESOLVED] ──> [CLOSED]
+       │                               ▲                     
+       └──────────────> [ESCALATED] ───┘
               │
               ▼
     Real-Time Broadcast (Socket.IO) ──> TanStack Query Frontend Cache
 ```
 
-1. **Deterministic Lifecycle Transitions:** Enforces explicit state changes via a finite state machine. Incidents cannot jump directly from `OPEN` to `RESOLVED` without entering an active investigation state.
-2. **SHA-256 Alert Deduplication:** Computes hashes over incoming alert payloads (service, error code, affected endpoint) within a sliding time window to collapse alert storms into a single actionable incident.
-3. **Real-Time Synchronization:** Uses Socket.IO rooms to push state changes, timeline notes, and escalation events to connected responders without client polling.
-4. **Role-Based Access Control (RBAC):** Restricts high-impact actions (escalation, post-mortem publishing) to designated roles (Admin, Incident Commander, Responder, Viewer).
+1. **Deterministic Lifecycle Transitions (`constants.js`):** Enforces strict state transitions via `VALID_TRANSITIONS` and `TRANSITION_GUARDS`. An incident cannot transition arbitrarily; for instance, transitioning to `MITIGATED` requires a `mitigationSummary`, and transitioning to `RESOLVED` enforces `rootCauseCategory` and `rootCauseDescription`.
+2. **SHA-256 Alert Deduplication (`webhook.service.js`):** Computes a SHA-256 hash across `source`, normalized `service`, and `title`. If an active incident matching this fingerprint is currently in an unclosed state (`FIRED`, `ACKNOWLEDGED`, `INVESTIGATING`, `ESCALATED`), the incoming alert is linked to the existing incident rather than spawning duplicate tickets.
+3. **Real-Time Synchronization:** Uses Socket.IO organization rooms to push state changes, timeline notes, and escalation events to connected responders without client polling.
+4. **Role-Based Access Control (RBAC):** Restricts high-impact actions (escalation, post-mortem publishing) to designated roles (`ADMIN`, `INCIDENT_COMMANDER`, `RESPONDER`, `VIEWER`).
 
 ---
 
