@@ -1,13 +1,13 @@
 # OSS-002: statsmodels — Numerical Stability for Zero Counts in Goodness-of-Fit
 
 - **Entry ID:** OSS-002
-- **Date:** November 9, 2026 (Updated: November 14, 2026)
+- **Date:** November 9, 2026 (Merged: November 16, 2026)
 - **Category:** Open Source
 - **Repository:** [`statsmodels/statsmodels`](https://github.com/statsmodels/statsmodels)
 - **Issue:** [#10703](https://github.com/statsmodels/statsmodels/issues/10703)
 - **Pull Request:** [#10704](https://github.com/statsmodels/statsmodels/pull/10704)
-- **Status:** In Review (Passing all CI checks)
-- **Reviewed by:** `tasuku-kobayashi`
+- **Status:** Merged into `main` (Statsmodels 0.15.1)
+- **Reviewed by:** `tasuku-kobayashi`, `bashtage`
 
 ---
 
@@ -63,7 +63,7 @@ if a == 0:   # log likelihood ratio
     D_obs = 2*n * np.sum(special.xlogy(o/(1.0*nt), o/e), axis=axis)
 ```
 
-Per maintainer review, kept the change strictly scoped to `lambd=0` (and its alias `"loglikeratio"`) where zero counts have a finite limit of 0, matching the behavior of `scipy.stats.power_divergence`.
+Per maintainer review, kept the change strictly scoped to `lambd=0` (and its alias `"loglikeratio"`) where zero counts have a finite limit of 0, matching the behavior of `scipy.stats.power_divergence`. Added a release note to `docs/source/release/version0.15.1.rst` under *Behavior changes*.
 
 ---
 
@@ -81,3 +81,4 @@ Added `test_powerdiscrepancy_zero_counts` in `statsmodels/stats/tests/test_gof.p
 1. **Floating-point edge cases in statistics:** Mathematical formulas often have well-defined analytical limits ($0 \ln(0) = 0$) that fail under naive floating-point evaluation ($0 \times -\infty = \text{NaN}$).
 2. **Specialized numerical primitives:** Libraries like SciPy provide tools like `xlogy` precisely to avoid manual branching while maintaining vectorized performance across NumPy arrays.
 3. **PR Scoping & Maintainer Etiquette:** Keeping pull requests strictly focused on the reported issue rather than adding unrequested speculative changes makes reviews fast and painless.
+4. **Release Notes & Documentation Hygiene:** Major open-source packages require updating release notes under appropriate milestone files (`docs/source/release/`) referencing the PR and issue IDs before maintainers merge.
