@@ -24,7 +24,7 @@ From-scratch numerical implementations, leak-free validation pipelines, and comp
 | ID | Track / Topic | Focus & Mathematical Core | Validation / Result | Log & Code |
 | :--- | :--- | :--- | :---: | :---: |
 | **DRL-001** | First Principles | Linear Regression: Moore-Penrose Normal Equations & Vectorized Batch GD | **Passed** ✅ (Matches Sklearn within $10^{-4}$) | [Notes](./applied-ml/DRL-001-linear-regression.md) · [Code](./applied-ml/drills/drill_01_linear_regression.py) |
-| **ML-001** | Competitive ML | [Spaceship Titanic](https://www.kaggle.com/c/spaceship-titanic): Leak-free `ColumnTransformer`, transductive groups, luxury ratios | **Local CV: 0.8011** (5-Fold Stratified) | [Notes](./applied-ml/ML-001-spaceship-titanic.md) · [Code](./applied-ml/competitions/spaceship-titanic/my_pipeline.py) |
+| **ML-001** | Competitive ML | [Spaceship Titanic](https://www.kaggle.com/c/spaceship-titanic): 10-model GBDT benchmark, transductive groups, luxury ratios | **Local CV: 0.8179** (5-Fold Stratified, CatBoost) | [Notes](./applied-ml/ML-001-spaceship-titanic.md) · [Code](./applied-ml/competitions/spaceship-titanic/my_pipeline.py) |
 
 ---
 
