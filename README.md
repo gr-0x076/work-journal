@@ -14,6 +14,7 @@ Detailed records of upstream bug fixes, numerical investigations, and code revie
 | **OSS-002** | [`statsmodels/statsmodels`](https://github.com/statsmodels/statsmodels) | `stats.gof`: Zero count numerical stability in `powerdiscrepancy` | **Merged** ✅ (Statsmodels 0.15.1) | [Notes](./open-source/statsmodels/OSS-002-zero-counts-gof.md) |
 | **OSS-003** | [`scipy/scipy`](https://github.com/scipy/scipy) | `ndimage`: Out-of-bounds filter offset in `NI_FILTER_GOTO` | **Merged** ✅ (SciPy 2.0.0) | [Notes](./open-source/scipy/OSS-003-ndimage-filter-bounds.md) |
 | **OSS-004** | [`mwaskom/seaborn`](https://github.com/mwaskom/seaborn) | `_base`: Fix phantom points on duplicate indices with missing data | **In Review** 🚀 ([#4040](https://github.com/mwaskom/seaborn/pull/4040)) | [Notes](./open-source/seaborn/OSS-004-duplicate-index-nan.md) |
+| **OSS-005** | [`scipy/scipy`](https://github.com/scipy/scipy) | `stats`: Prevent overflow/underflow in `stats.pmean` | **In Review** 🚀 ([#26868](https://github.com/scipy/scipy/pull/26868)) | [Notes](./open-source/scipy/OSS-005-pmean-overflow.md) |
 
 ---
 

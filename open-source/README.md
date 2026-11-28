@@ -25,3 +25,8 @@ A log of my contributions to upstream open-source software libraries.
   - **Issue:** [mwaskom/seaborn#4036](https://github.com/mwaskom/seaborn/issues/4036) | **PR:** [#4040](https://github.com/mwaskom/seaborn/pull/4040)
   - **Status:** In Review (Passing all CI checks)
   - **Summary:** Enforced positional integer indexing during coordinate conversion in `VectorPlotter.comp_data` to prevent pandas label alignment from broadcasting points across duplicate index rows with missing values.
+
+- **[OSS-005: SciPy — Prevent Overflow and Underflow in `stats.pmean`](./scipy/OSS-005-pmean-overflow.md)**
+  - **Issue:** [scipy/scipy#26854](https://github.com/scipy/scipy/issues/26854) | **PR:** [#26868](https://github.com/scipy/scipy/pull/26868)
+  - **Status:** In Review 🚀 (Passing all CI checks)
+  - **Summary:** Factored out an extrema scaling factor ($c = \max$ for $p>0$, $c = \min$ for $p<0$) along the reduction axis to guarantee intermediate powers stay in $[0, 1]$ and never overflow or underflow.
